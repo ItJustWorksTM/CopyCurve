@@ -1,0 +1,9 @@
+FROM registry.git.chalmers.se/courses/dit638/students/2021-group-09/multiarch/debian:bullseye as builder
+MAINTAINER ItJustWorksTM ItJustWorksTM@aerostun.dev
+COPY --from=registry.git.chalmers.se/courses/dit638/students/2021-group-09/deps/debian-cmake:3.20.0 / /usr/local
+
+RUN export PATH="/usr/local/bin:/usr/bin:$PATH" && \
+    echo 'deb http://deb.debian.org/debian bullseye-backports main' > /etc/apt/sources.list.d/backports.list && \
+    apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y build-essential git libboost1.74-all-dev libopencv-dev gcovr

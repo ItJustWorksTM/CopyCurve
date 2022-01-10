@@ -1,0 +1,7 @@
+FROM registry.git.chalmers.se/courses/dit638/students/2021-group-09/multiarch/debian:bullseye
+MAINTAINER ItJustWorksTM ItJustWorksTM@aerostun.dev
+RUN export PATH="/usr/bin:$PATH" && \
+    apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends libopencv-calib3d4.5 libopencv-contrib4.5 libopencv-core4.5 libopencv-features2d4.5 libopencv-flann4.5 libopencv-highgui4.5 libopencv-imgcodecs4.5 libopencv-imgproc4.5 libopencv-ml4.5 libopencv-objdetect4.5 libopencv-photo4.5 libopencv-shape4.5 libopencv-stitching4.5 libopencv-superres4.5 libopencv-video4.5 libopencv-videoio4.5 libopencv-videostab4.5 libopencv-viz4.5 && \
+    apt-get clean

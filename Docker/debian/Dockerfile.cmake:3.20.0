@@ -1,0 +1,8 @@
+FROM debian:buster as builder
+MAINTAINER ItJustWorksTM ItJustWorksTM@aerostun.dev
+COPY cmake:3.20.0.mksh /tmp/cmake.mksh
+RUN sh -s < /tmp/cmake.mksh
+
+FROM scratch
+MAINTAINER ItJustWorksTM ItJustWorksTM@aerostun.dev
+COPY --from=builder /out/ /

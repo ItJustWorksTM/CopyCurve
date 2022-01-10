@@ -1,0 +1,23 @@
+#!/bin/sh
+mkdir /out
+
+# Update packages
+apt-get update -y
+apt-get upgrade -y
+apt-get dist-upgrade -y
+
+# Install build-deps
+apt-get install wget build-essential cmake ninja-build libssl-dev -y
+
+# Fetch CMake source
+wget -O cmake.tgz "https://github.com/Kitware/CMake/releases/download/v3.20.0/cmake-3.20.0.tar.gz"
+tar xzf cmake.tgz
+cd cmake-3.20.0
+
+# Build CMake
+mkdir build
+cd build
+cmake -G Ninja -DCMAKE_INSTALL_PREFIX:PATH=/out -DCMAKE_BUILD_TYPE:STRING=Release ..
+cmake --build . --target install --config Release
+
+/out/bin/cmake --version
